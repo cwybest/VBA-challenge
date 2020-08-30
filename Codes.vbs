@@ -47,14 +47,15 @@ lastrow2 = Cells(Rows.Count, 10).End(xlUp).Row
 Range("j" & lastrow2).Delete
 lastrow2 = Cells(Rows.Count, 10).End(xlUp).Row
 For i = 1 To lastrow - 1
+open_price = Cells(2, 3)
     If Cells(i, 1) <> Cells(i + 1, 1) And open_price <> 0 Then
         row3 = Cells(i + 1, 3).Row
         open_price = Cells(row3, 3)
         Range("k" & counter) = Range("j" & counter) / open_price
         counter = counter + 1
-     ElseIf open_price = 0 Then
-        Range("k" & counter) = range("j"&counter)/1
-        counter = counter + 1
+    End If
+    If Cells(i, 1) <> Cells(i + 1, 1) And open_price = 0 Then
+        Range("k" & counter) = Range("j" & counter) / 1
         End If
 Next i
 Range("k2:k" & lastrow2).Style = "Percent"
@@ -89,6 +90,9 @@ End If
 Next i
 Next
 End Sub
+
+
+
 
 
 
